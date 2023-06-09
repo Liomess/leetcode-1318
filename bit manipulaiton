@@ -1,0 +1,30 @@
+class Solution:
+    def minFlips(self, a: int, b: int, c: int) -> int:
+        ba,bb,bc=bin(a),bin(b),bin(c)
+        ba,bb,bc=ba[2:],bb[2:],bc[2:]
+        size=max(len(ba),max(len(bb),len(bc)))
+        if len(ba)!=size:
+            val=size-len(ba)
+            while val:
+                ba="0"+ba
+                val-=1
+        if len(bb)!=size:
+            val=size-len(bb)
+            while val:
+                bb="0"+bb
+                val-=1
+        if len(bc)!=size:
+            val=size-len(bc)
+            while val:
+                bc="0"+bc
+                val-=1
+        ans=0
+        for i in range(size):
+            if bc[i]=="0":
+                if ba[i]=="1":
+                    ans+=1
+                if bb[i]=="1":
+                    ans+=1
+            elif ba[i]=="0" and bb[i]=="0":
+                ans+=1
+        return ans
